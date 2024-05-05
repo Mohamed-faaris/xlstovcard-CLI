@@ -16,7 +16,7 @@ def int_e(string):
     except:
         return -1
 
-
+#input name of excel
 file = 'volunteers.xlsx'
 xls = pd.ExcelFile(file)
 sheets = xls.sheet_names
@@ -40,7 +40,7 @@ for i, col in enumerate(cols):
 
 # name
 option = int_input('1.if you'
-                   ' need name from single column(and a common suffix or suffix as any column)\n'
+                   'need name from single column(and a common suffix or suffix as any column)\n'
                    '2.if you need name as group of '
                    'prefix,first name,middle name,last name,suffix(any field can be empty)\n'
                    'choose: ')
