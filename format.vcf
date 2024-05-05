@@ -1,0 +1,28 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Pre First name Mid Last name, Suf
+N:Last name;First name;Mid;Pre;Suf
+item1.EMAIL;TYPE=INTERNET:email 1(abc@1.com)
+item1.X-ABLabel:email(1) label
+item2.EMAIL;TYPE=INTERNET:email 2 (abc@2.com)
+item2.X-ABLabel:email(2) label
+item3.EMAIL;TYPE=INTERNET:email3 (abc@3.com)
+item3.X-ABLabel:email(3) label
+item4.TEL:1111111111111111111
+item4.X-ABLabel:Mobile(1)
+item5.TEL:22222222222222222
+item5.X-ABLabel:mobile(2)
+item6.TEL:3333333333333333
+item6.X-ABLabel:mobile(3)
+ADR:po box;;Street address line 1;city Street address line 2;state;6
+ 20001;IN;Street address line 1\npo box\nTrichy Street address line 2\, Tam
+ il Nadu 620001\nIN
+item7.ORG:company
+item7.X-ABLabel:
+item8.TITLE:Job title
+item8.X-ABLabel:
+BDAY:19991231
+NOTE:NOTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !!!!!!!!!!
+CATEGORIES:label group,Imported on 21/04,myContacts
+END:VCARD
