@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 
 
 def int_input(string):
@@ -32,8 +31,6 @@ class Contacts:
     def input_file(self):
         # input name of Excel
         file = input("file path:")
-        #isrelative = input("file path is relative")
-        #if isrelative in ["Y","y","yes","True","true"]:
         try:
             xls = pd.ExcelFile(file)
         except FileNotFoundError:
