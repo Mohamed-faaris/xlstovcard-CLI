@@ -86,6 +86,7 @@ class Contacts:
         for x in range(len(contacts)):
             vcf += "BEGIN:VCARD\nVERSION:3.0\n"
 
+
             # name
             full_name = ""
             for i in self.name_index:
