@@ -18,6 +18,7 @@ def int_e(string):
         return -1
 
 
+
 def input_index(name):
     i=input("input for" + name)
     if i.isdigit():
@@ -28,6 +29,8 @@ def input_index(name):
         return -1
 
 
+
+
 class Contacts:
 
     #prefix,first_name,middle_name,last_name,suffix
@@ -35,6 +38,7 @@ class Contacts:
     num_index_labels   = []
     email_index_labels = []
     groups_index       = []
+    contact_file       = None
 
     def input_name(self):
         print("just press enter for nothing\n"
@@ -65,61 +69,60 @@ class Contacts:
             for i in range(number_of_groups):
                 self.groups_index.append(input_index(f"{}.group".format(i)))
 
-
-def build(contact):
-    vcf = ""
-    for x in range(len(contacts)):
-        vcf += "BEGIN:VCARD\nVERSION:3.0\n"
-
-        # name
-        if option == 1:
-            full_name = str(contacts[cols[name_index]][x])
-            prefix = ""
-            first_name = ""
-            middle_name = ""
-            last_name = ""
-        else:  # elif option == 2:
-            prefix = contacts[cols[prefix_index]][x] if prefix_index > 0 else ""
-            first_name = contacts[cols[first_name_index]][x] if first_name_index > 0 else ""
-            middle_name = contacts[cols[middle_name_index]][x] if middle_name_index > 0 else ""
-            last_name = contacts[cols[last_name_index]][x] if last_name_index > 0 else ""
-            full_name = prefix + " " + first_name + " " + middle_name + " " + last_name
-        print(full_name)
-
-        if option_suffix == 2:
-            suffix = contacts[cols[suffix_index]][x]
-
-        full_name += " " + suffix
-        vcf += "FN:" + full_name + '\n'
-
-        # number+email
-        temp = ""
-        for i in range(num_of_number + num_of_email):
-            if i < num_of_email:
-                temp += f"items{i}.EMAIL;TYPE=INTERNET:{contacts[cols[email_index[i]]][x]}\n"
-                temp += f"items{i}.X-ABLabel:{email_labels[i]}\n"
+    def index_retriever(self, row_index, index):
+        if type(i) == type(0):
+            if i != -1:
+                return self.contact_file.iloc[row_index,index]
             else:
-                temp += f"items{i}.TEL:{contacts[cols[num_index[i - num_of_email]]][x]}\n"
-                temp += f"items{i}.X-ABLabel:{num_labels[i - num_of_email]}\n"
-        vcf += temp
+                return ""
+        elif type(i) == type(""):
+            return index
+        else:
+            exit(str(row_index, index))
 
-        # categories
-        if len(labels) != 0:
-            labels_text = ""
-            for label in labels:
-                labels_text += label + ","
-            vcf += "CATEGORIES:"
-            vcf += labels_text[:-1]
-            vcf += '\n'
 
-        # end
-        vcf += "END:VCARD\n\n"
+    def build(self):
+        vcf = ""
+        for x in range(len(contacts)):
+            vcf += "BEGIN:VCARD\nVERSION:3.0\n"
 
-    # saving file
-    text_file = open("Export.vcf", "w", encoding="utf-8")  # Encoding utf-8 added
-    text_file.write(vcf)
-    text_file.close()
-    print("Completed!")
+            # name
+            full_name = ""
+            for i in self.name_index:
+                full_name += self.index_retriever(x, i)
+            #debug
+            print(full_name)
+            vcf += "FN:" + full_name + '\n'
+
+            # number+EMAIL
+            temp = ''
+            i = 0
+            for index,label in self.num_index_labels;
+                temp += f"items{i}.TEL:{self.index_retriever(x,index)}\n"
+                temp += f"items{i}.X-ABLabel:{label}\n"
+            for index,label in self.email_index_labels;
+                temp += f"items{i}.TEL:{self.index_retriever(x,index)}\n"
+                temp += f"items{i}.X-ABLabel:{label}\n"
+            #debug
+            print(temp)
+            vcf += temp
+
+            # categories
+            temp = ""
+
+            temp += "CATEGORIES:"
+            for label in groups_index
+                temp += index_retriever(x,groups_index)
+            temp += '\n'
+
+            # end
+            vcf += "END:VCARD\n\n"
+
+        # saving file
+        text_file = open("Export.vcf", "w", encoding="utf-8")  # Encoding utf-8 added
+        text_file.write(vcf)
+        text_file.close()
+        print("Completed!")
 
 
 
