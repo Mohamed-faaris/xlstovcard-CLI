@@ -17,6 +17,7 @@ def int_e(string):
     except:
         return -1
 
+
 def input_index(name):
     i=input("input for" + name)
     if i.isdigit():
