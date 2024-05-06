@@ -1,7 +1,5 @@
 import pandas as pd
-
-
-# import os
+import os
 
 
 def int_input(string):
@@ -33,8 +31,16 @@ class Contacts:
 
     def input_file(self):
         # input name of Excel
-        file = "50-sample-contacts.xlsx"
-        xls = pd.ExcelFile(file)
+        file = input("file path:")
+        #isrelative = input("file path is relative")
+        #if isrelative in ["Y","y","yes","True","true"]:
+        try:
+            xls = pd.ExcelFile(file)
+        except FileNotFoundError:
+            print("FileNotFoundError \nloaded 50-sample-contacts.xlsx")
+            file = "50-sample-contacts.xlsx"
+            xls = pd.ExcelFile(file)
+
         sheets = xls.sheet_names
         self.contacts_file = xls.parse(sheets[0])
 
