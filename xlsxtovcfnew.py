@@ -53,7 +53,7 @@ class Contacts:
             i = int(i)
             while i >= self.contacts_file.shape[1]:
                 print("max index:", self.contacts_file.shape[1])
-                int_input(name_str)
+                return int_input(name_str)
             return int(i)
         elif i.isalnum():
             return i
@@ -125,7 +125,7 @@ class Contacts:
                 temp += f"items{i}.TEL:{self.index_retriever(x, index)}\n"
                 temp += f"items{i}.X-ABLabel:{label}\n"
             # debug
-            print(temp)
+            #print(temp)
             vcf += temp
 
             # categories
