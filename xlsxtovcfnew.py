@@ -24,26 +24,21 @@ class Contacts:
     email_index_labels = []
     groups_index = []
 
-    def __init__(self):
-        self.contacts_file = None
-        # contact_file       = None
-
-    def input_file(self):
-        # input name of Excel
-        file = input("file path:")
+    def __init__(self,file_path):
         try:
-            xls = pd.ExcelFile(file)
+            xls = pd.ExcelFile(file_path)
         except FileNotFoundError:
             print("FileNotFoundError \nloaded 50-sample-contacts.xlsx")
-            file = "50-sample-contacts.xlsx"
-            xls = pd.ExcelFile(file)
-
+            file_path = "50-sample-contacts.xlsx"
+            xls = pd.ExcelFile(file_path)
         sheets = xls.sheet_names
         self.contacts_file = xls.parse(sheets[0])
+        self.columns = self.contacts_file.columns
+
 
     def print_cols(self):
         print(len(self.contacts_file), 'is number of rows')
-        for i, x in enumerate(self.contacts_file.columns):
+        for i, x in enumerate(self.columns):
             print(i, x)
         print("\n")
 
@@ -148,8 +143,8 @@ class Contacts:
 
 
 def main():
-    contact = Contacts()
-    contact.input_file()
+    file_path = input("File path : ")
+    contact = Contacts(file_path)
     contact.print_cols()
     contact.input_name()
     contact.input_nums()
