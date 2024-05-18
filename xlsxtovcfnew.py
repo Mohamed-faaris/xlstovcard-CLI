@@ -125,7 +125,7 @@ class Contacts:
                 temp += f"items{i}.TEL:{self.index_retriever(x, index)}\n"
                 temp += f"items{i}.X-ABLabel:{label}\n"
             # debug
-            #print(temp)
+            # print(temp)
             vcf += temp
 
             # categories
